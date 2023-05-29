@@ -1,0 +1,62 @@
+body{
+    background-color: rgb(254, 254, 254);
+}
+
+.card_button{
+    text-decoration: none;
+    padding: 8px 8px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #2e2e2e;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: box-shadow 0.2s;
+}
+.BUTTON_ON:hover{
+    box-shadow: -5px 5px #e3dbe1,
+    -15px 15px 20px -10px #484045,
+    5px -5px #8ce478,
+    5px -5px 20px #ccd7d7;
+}
+.BUTTON_OFF:hover{
+    box-shadow: -5px 5px #a0588e,
+    -15px 15px 20px -10px #484045,
+    5px -5px #0b2006,
+    5px -5px 20px #ccd7d7;
+}
+
+.IMG{
+    background-repeat: no-repeat;
+    background-size: 100px 95px;
+    width: 95px;
+    height: 90px;
+}
+
+.Light .on .IMG{
+    background-image: url(../img/Light_Bulb_On.png);
+}
+
+.Light .off .IMG{
+    background-image: url(../img/Light_Bulb_Off.png);
+}
+
+.Ceiling_fans .on .IMG{
+    background-image: url(../img/Ceiling_fans_on.gif);
+}
+.Ceiling_fans .off .IMG{
+    background-image: url(../img/Ceiling_fans_off.gif);
+}
+.Electric_fan .on .IMG{
+    background-image: url(../img/electric_fan_on.gif);
+}
+.Electric_fan .off .IMG{
+    background-image: url(../img/electric_fan_off.png);
+}
+.Water_pumps .on .IMG{
+    background-image: url(../img/Water_pumps_on.gif);
+}
+.Water_pumps .off .IMG{
+    background-image: url(../img/Water_pumps_off.png);
+}

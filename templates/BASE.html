@@ -1,0 +1,312 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề tài nghiên cứu khoa học</title>
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    
+    
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/Jquery.js' %}"></script>
+    <script src="{% static 'js/Script.js' %}"></script>
+</head>
+<body  id="body" onload="GetJSON()">
+    <form action="" method="POST">
+        {% csrf_token %}
+    </form>
+    <div class="container-fluid">
+        <h1 class="text-center alert alert-primary">MÔ HÌNH ĐIỀU KHIỂN HỆ ĐA VI ĐIỀU KHIÊN PHÂN TÁN THÔNG QUA LAN</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="col">
+                                    <center>
+                                        <h5>Khu vực 1</h5>
+                                    </center>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr />
+                                    </div>
+                                </div>
+                                {% for CON_1 in CONSTROL_1 %}
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    
+                                                    <input type="text" value="{{CON_1.NAME}}" class="form-control" id="id_NAME" readonly>
+                                                    <input type="text" value="{{CON_1.TYPE}}" class="form-control" id="id_TYPE" readonly>
+                                                    <a href="#Monitor_and_Control_Area__1-{{forloop.counter}}" class="btn btn-success btn-outline-primary BTN_EDIT" data-btnid = "{{CON_1.id}}" data-bs-toggle="modal"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <center id="TEMP__{{CON_1.id}}">
+                                                <div class="mt-2" id="IMG__{{CON_1.id}}">
+                                                    <div class="IMG col-md-4"></div>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_ON" data-id = "{{CON_1.id}}">Bật thiết bị</button>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_OFF" data-id = "{{CON_1.id}}">Tắt thiết bị</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <hr />
+                                        </div>
+                                    </div>
+
+                                    <div id="Monitor_and_Control_Area__1-{{forloop.counter}}" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="/update/{{CON_1.id}}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-header">						
+                                                        <h4 class="modal-title">Đổi tên thiết bị</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">					
+                                                        <div class="form-group">
+                                                            <label>Tên thiết bị</label>
+                                                            <input name="NAME" value="{{CON_1.NAME}}" type="text" class="form-control" required>
+                                                            <label>Loại thiết bị</label>
+                                                            <select class="form-control" name="TYPE" value="{{CON_1.TYPE}}">
+                                                                <option value="Quạt">Quạt</option>
+                                                                <option value="Quạt trần">Quạt trần</option>
+                                                                <option value="Máy bơn nước">Máy bơn nước</option>
+                                                                <option value="Bóng đèn">Bóng đèn</option>
+                                                            </select>
+                                                        </div>				
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" class="btn btn-primary" value="Xác nhận">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="col">
+                                    <center>
+                                        <h5>Khu vực 2</h5>
+                                    </center>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr />
+                                    </div>
+                                </div>
+                                {% for CON_2 in CONSTROL_2 %}
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    
+                                                    <input type="text" value="{{CON_2.NAME}}" class="form-control" id="id_NAME" readonly>
+                                                    <input type="text" value="{{CON_2.TYPE}}" class="form-control" id="id_TYPE" readonly>
+                                                    <a href="#Monitor_and_Control_Area__2-{{forloop.counter}}" class="btn btn-success btn-outline-primary BTN_EDIT" data-btnid = "{{CON_2.id}}" data-bs-toggle="modal"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <center id="TEMP__{{CON_2.id}}">
+                                                <div class="mt-2" id="IMG__{{CON_2.id}}">
+                                                    <div class="IMG col-md-4"></div>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_ON" data-id = "{{CON_2.id}}">Bật thiết bị</button>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_OFF" data-id = "{{CON_2.id}}">Tắt thiết bị</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <hr />
+                                        </div>
+                                    </div>
+
+                                    <div id="Monitor_and_Control_Area__2-{{forloop.counter}}" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="/update/{{CON_2.id}}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-header">						
+                                                        <h4 class="modal-title">Đổi tên thiết bị</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">					
+                                                        <div class="form-group">
+                                                            <label>Tên thiết bị</label>
+                                                            <input name="NAME" value="{{CON_2.NAME}}" type="text" class="form-control" required>
+                                                            <label>Loại thiết bị</label>
+                                                            <select class="form-control" name="TYPE" value="{{CON_2.TYPE}}">
+                                                                <option value="Quạt">Quạt</option>
+                                                                <option value="Quạt trần">Quạt trần</option>
+                                                                <option value="Máy bơn nước">Máy bơn nước</option>
+                                                                <option value="Bóng đèn">Bóng đèn</option>
+                                                            </select>
+                                                        </div>				
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" class="btn btn-primary" value="Xác nhận">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="col">
+                                    <center>
+                                        <h5>Khu vực 3</h5>
+                                    </center>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr />
+                                    </div>
+                                </div>
+                                {% for CON_3 in CONSTROL_3 %}
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    
+                                                    <input type="text" value="{{CON_3.NAME}}" class="form-control" id="id_NAME" readonly>
+                                                    <input type="text" value="{{CON_3.TYPE}}" class="form-control" id="id_TYPE" readonly>
+                                                    <a href="#Monitor_and_Control_Area__3-{{forloop.counter}}" class="btn btn-success btn-outline-primary BTN_EDIT" data-btnid = "{{CON_3.id}}" data-bs-toggle="modal"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <center id="TEMP__{{CON_3.id}}">
+                                                <div class="mt-2" id="IMG__{{CON_3.id}}">
+                                                    <div class="IMG col-md-4"></div>
+                                                </div>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_ON" data-id = "{{CON_3.id}}">Bật thiết bị</button>
+                                            </center>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <center>
+                                                <button class="card_button mt-5 rounded-pill text-nowrap BUTTON_OFF" data-id = "{{CON_3.id}}">Tắt thiết bị</button>
+                                            </center>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <hr />
+                                        </div>
+                                    </div>
+
+                                    <div id="Monitor_and_Control_Area__3-{{forloop.counter}}" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="/update/{{CON_3.id}}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="modal-header">						
+                                                        <h4 class="modal-title">Đổi tên thiết bị</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">					
+                                                        <div class="form-group">
+                                                            <label>Tên thiết bị</label>
+                                                            <input name="NAME" value="{{CON_3.NAME}}" type="text" class="form-control" required>
+                                                            <label>Loại thiết bị</label>
+                                                            <select class="form-control" name="TYPE" value="{{CON_3.TYPE}}">
+                                                                <option value="Quạt">Quạt</option>
+                                                                <option value="Quạt trần">Quạt trần</option>
+                                                                <option value="Máy bơn nước">Máy bơn nước</option>
+                                                                <option value="Bóng đèn">Bóng đèn</option>
+                                                            </select>
+                                                        </div>				
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" class="btn btn-primary" value="Xác nhận">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</body>
+</html>
